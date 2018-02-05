@@ -2,4 +2,4 @@
 Used APIs and tools 
 ( Firebase ( Authentcation – Database  - Storage  - Messaging   )
 
--  Google APIs (Maps , Places ) - matisse - Glide - Gson  )
+  Google APIs (Maps , Places ) - matisse - Glide - Gson  )
