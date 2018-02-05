@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_favorites"
+        android:title="Favorites"
+        android:icon="@drawable/ic_star_border_grey_500_24dp" />
+
+    <item android:id="@+id/action_map"
+        android:title="Add"
+        android:icon="@drawable/ic_add_a_photo_blue_500_24dp" />
+
+    <item android:id="@+id/action_search"
+        android:title="Search"
+        android:icon="@drawable/ic_search_grey_400_24dp" />
+</menu>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+
+
+
+    >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:animateLayoutChanges="true">
+
+
+        <com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/flexCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            app:alignContent="space_around"
+            app:alignItems="center"
+            android:background="@drawable/white_rounded_background"
+            android:layout_margin="5dp"
+            app:flexWrap="wrap"></com.google.android.flexbox.FlexboxLayout>
+
+
+
+
+
+    <com.google.android.flexbox.FlexboxLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        app:alignContent="space_around"
+        app:alignItems="center"
+        android:background="@drawable/white_rounded_background"
+        android:layout_margin="5dp"
+        app:flexWrap="wrap"
+        android:visibility="invisible"
+        android:id="@+id/flexTags">
+    </com.google.android.flexbox.FlexboxLayout>
+
+
+
+    <com.google.android.flexbox.FlexboxLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        app:alignContent="space_around"
+        app:alignItems="center"
+        android:background="@drawable/white_rounded_background"
+        android:layout_margin="5dp"
+        app:flexWrap="wrap"
+        android:visibility="invisible"
+        android:id="@+id/flexChoosenTags">
+    </com.google.android.flexbox.FlexboxLayout>
+
+
+    <Button
+
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_back"
+        android:text="Submit Tags"
+
+        android:textStyle="bold"
+        android:id="@+id/submitTags"/>
+
+
+</LinearLayout>
+</ScrollView>

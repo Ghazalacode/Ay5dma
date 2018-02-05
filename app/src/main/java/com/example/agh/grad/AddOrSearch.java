@@ -19,7 +19,7 @@ public class AddOrSearch extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    setContentView(R.layout.add_or_search);
+    setContentView(R.layout.activity_add_or_search);
         AddService = (AppCompatButton) findViewById(R.id.AddService);
         SearchSearvices = (AppCompatButton) findViewById(R.id.SearchSearvices);
 

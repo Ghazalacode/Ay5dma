@@ -17,16 +17,26 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by agh on 11/04/17.
  */
 public class SignUp extends AppCompatActivity{
 
-    private AppCompatEditText userNameRegister;
-    private AppCompatEditText passwordRegister;
-    private AppCompatEditText emailRegister;
-    private AppCompatEditText jobTitleRegister;
-    private AppCompatButton signup;
+    @BindView(R.id.userNameRegister)
+  AppCompatEditText userNameRegister;
+
+    @BindView(R.id.passwordRegister)
+ AppCompatEditText passwordRegister;
+    @BindView(R.id.emailRegister)
+ AppCompatEditText emailRegister;
+
+    @BindView(R.id.jobTitleRegister)
+AppCompatEditText jobTitleRegister;
+    @BindView(R.id.signup)
+   AppCompatButton signup;
 
 
 
@@ -36,15 +46,9 @@ public class SignUp extends AppCompatActivity{
 
 
         setContentView(R.layout.activity_signup);
+        ButterKnife.bind(this);
 
 
-        userNameRegister = (AppCompatEditText) findViewById(R.id.userNameRegister);
-        passwordRegister = (AppCompatEditText) findViewById(R.id.passwordRegister);
-        emailRegister = (AppCompatEditText) findViewById(R.id.emailRegister);
-        jobTitleRegister = (AppCompatEditText) findViewById(R.id.jobTitleRegister);
-
-
-        signup = (AppCompatButton) findViewById(R.id.signup);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

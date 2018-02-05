@@ -1,60 +1,82 @@
 package com.example.agh.grad;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
+import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import com.google.firebase.database.DataSnapshot;
+import com.example.agh.grad.Adapters.recylerServiceAdapter;
+import com.example.agh.grad.Models.Services;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ItemClickListner {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     List<String> arrayServices = new ArrayList<>();
 
-
-    service[] services = {
-            new service("ميكانيكي الترعة", "لتصليح جميع انواع السيارات والموتسيكلات","the","012123124","Al Teraa St, Mansoura Qism 2, Mansoura, Dakahlia","مرحبا"),
-            new service("مركز كار هوم ", "مركز متكامل لصيانة السيارات وبيع جميع قطع الغيار ", "the","01212312455","Mansoura, Mansoura Qism 2, Mansoura, Dakahlia Governorate, Egypt","مركز متكامل لصيانة السيارات وبيع جميع قطع الغيار من خلال مجموعة متميزة من المختصين والحرفيين "),
-            new service("السلام للسيارات", "the","2221573","مركز متكامل لصيانة السيارات وبيع جميع قطع الغيار","Sharm El-Sheikh, Qesm Sharm Ash Sheikh, South Sinai Governorate, Egypt","مركز متكامل لصيانة السيارات وبيع جميع قطع الغيار من خلال مجموعة من الحرفيين والمختصين باسعار مميزة في شرم الشيخ "),
-    };
-    RecyclerView recyclerViewServiceDetail;
+    RecyclerView recyclerViewServices;
     recylerServiceAdapter recylerServiceAdapter;
+   ArrayList<Services> newServices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Intent intent = this.getIntent();
-        arrayServices= intent.getStringArrayListExtra("stringArrayService");
+      //  arrayServices= intent.getStringArrayListExtra("newServices");
      //   System.out.println(arrayServices.size());
-        ArrayList<DataSnapshot> arrayList = new ArrayList<>();
+       newServices = Parcels.unwrap(intent.getParcelableExtra(SearchServices.PARCELER_TAG)) ;
+
+    Log.e( "onCreate: ",newServices.toString() );
+        recyclerViewServices = (RecyclerView) findViewById(R.id.recylerViewServiceDetail);
+        recyclerViewServices.setLayoutManager(new LinearLayoutManager(this));
+        recylerServiceAdapter = new recylerServiceAdapter(newServices, getApplicationContext());
+        recyclerViewServices.setAdapter(recylerServiceAdapter);
 
 
-        recyclerViewServiceDetail = (RecyclerView) findViewById(R.id.recylerViewServiceDetail);
-        recyclerViewServiceDetail.setLayoutManager(new LinearLayoutManager(this));
-        recylerServiceAdapter = new recylerServiceAdapter(services, getApplicationContext());
-        recyclerViewServiceDetail.setAdapter(recylerServiceAdapter);
-        recylerServiceAdapter.setClickListener(this);
+}
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        final MenuItem searchItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(this);
+
+        return true;
     }
 
-    public void onClick(View view, int position) {
-        Intent intent = new Intent(MainActivity.this, serviceDetailActivity.class);
-        intent.putExtra("serviceName", services[position].getServiceName());
-        intent.putExtra("serviceProvider", services[position].getServiceProvider());
-        intent.putExtra("serviceShortDescrption", services[position].getServiceDesrption());
-        intent.putExtra("serviceLikeCounter", String.valueOf(services[position].getLikeCounter()));
-        intent.putExtra("serviceDislikeCounter", String.valueOf(services[position].getDislikeCounter()));
-        intent.putExtra("serviceFullDescrption",String.valueOf(services[position].getServiceFullDesrption()));
-        intent.putExtra("ServiceLocation",String.valueOf(services[position].getLocation()));
-        intent.putExtra("servicephoneNumber",String.valueOf(services[position].getPhoneNumber()));
+    @Override
+    public boolean onQueryTextChange(String query) {
+        // Here is where we are going to implement the filter logic
 
-        startActivity(intent);
+
+        if ( TextUtils.isEmpty ( query ) ) {
+            recylerServiceAdapter.getFilter().filter("");
+        } else {
+            recylerServiceAdapter.getFilter().filter(query.toString());
+        }
+        return true;
     }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+
 
 
 }
